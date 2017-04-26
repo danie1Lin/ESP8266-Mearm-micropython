@@ -33,7 +33,7 @@ L3 = 68 # Wrist to hand plus base centre to shoulder
 	
 def cart2polar(x, y):
     # Determine magnitude of cartesian coordinates
-    r = math.hypot(x, y)
+    r = math.sqrt(x*x+y*y)
     # Don't try to calculate zero magnitude vectors angles
     if r == 0:
         return

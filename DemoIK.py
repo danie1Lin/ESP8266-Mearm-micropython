@@ -5,7 +5,13 @@
 #  Simple demo of meArm library to walk through some points defined in Cartesian coordinates
 
 import meArm
-
+addr = 0x39
+GDATAH = 0x96
+GDATAL = 0x97
+BDATAH = 0x98
+BDATAL = 0x99
+RATAH = 0x9A
+RDATAL = 0x9B
 def main():
     arm = meArm.meArm()
     arm.begin()
