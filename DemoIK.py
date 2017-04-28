@@ -12,6 +12,8 @@ BDATAH = 0x98
 BDATAL = 0x99
 RATAH = 0x9A
 RDATAL = 0x9B
+ENABLE = 
+ALL=0x7F
 def main():
     arm = meArm.meArm()
     arm.begin()

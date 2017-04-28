@@ -19,9 +19,9 @@ class arm():
     def begin(self):
         """Call begin() before any other meArm calls.  Optional parameters to select a different block of servo connectors or different I2C address."""
         self.pwm = PWM.PWM() # Address of Adafruit PWM servo driver
-    	self.base = 3
+    	self.base = 1
     	self.shoulder = 2
-    	self.elbow = 1
+    	self.elbow = 3
     	self.gripper = 4
     	self.pwm.setPWMFreq(50)
     	self.openGripper()
@@ -97,3 +97,22 @@ class arm():
     def getPos(self):
         """Returns the current position of the gripper"""
     	return [self.x, self.y, self.z]
+    def rest(self):
+        for servo in range(1,5):
+            self.pwm.setPWM(servo,0)
+    def relative(self,x,y,z):
+        [x0,y0,z0]=self.getPos()
+        x0=x0+x
+        y0=y0+y
+        z0=z0+z
+        angles = [0,0,0]
+        if kinematics.solve(x0, y0, z0, angles):
+            radBase = angles[0]
+            radShoulder = angles[1]
+            radElbow = angles[2]
+            self.pwm.setPWM(self.base, self.angle2pwm("base", radBase))
+            self.pwm.setPWM(self.shoulder, self.angle2pwm("shoulder", radShoulder))
+            self.pwm.setPWM(self.elbow, self.angle2pwm("elbow", radElbow))
+            self.x = x0
+            self.y = y0
+            self.z = z0
