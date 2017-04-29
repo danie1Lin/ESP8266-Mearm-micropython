@@ -4,7 +4,7 @@ import arm
 import os
 import PWM
 import machine
-
+import kinematics
 
 Arm =arm.arm()
 Arm.begin()
@@ -54,3 +54,4 @@ def ultra():
 	cm = (t2 - t1) / 58.0
 	print(cm)
 
+	

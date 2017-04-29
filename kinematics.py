@@ -94,7 +94,7 @@ def solve(x, y, z, angles):
     # Solve for servo angles from horizontal
     a0 = th0
     a1 = ang_P + B
-    a2 = C + a1 - math.pi
+    a2 = math.pi-C -a1 
 	
     angles[0] = a0
     angles[1] = a1
@@ -106,7 +106,7 @@ def solve(x, y, z, angles):
 
 def polar2cart(r, theta):
     a = r * math.cos(theta)
-    b = r * sin(theta)
+    b = r * math.sin(theta)
     return a,b
 	
 def distance(x1, y1, z1, x2, y2, z2):
